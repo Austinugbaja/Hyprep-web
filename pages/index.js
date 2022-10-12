@@ -335,7 +335,7 @@ const index = ({ posts }) => {
   );
 };
 
-export default index;
+export default index;urueu
 
 export async function getServerSideProps() {
   const client = new ApolloClient({
