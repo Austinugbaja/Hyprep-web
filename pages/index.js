@@ -64,7 +64,7 @@ const index = ({ posts }) => {
                   <p className="sm:text-xl text-lg font-merriweather text-white sm:pb-6 pb-3">
                     {posts[0]?.attributes?.Title}
                   </p>
-                  <Link href={`/news/pressrelease`}>
+                  <Link href="/">
                     <a className="text-green-400 font-bold text-lg underline cursor-pointer">
                       read more
                     </a>
@@ -85,7 +85,7 @@ const index = ({ posts }) => {
                   <p className="sm:text-xl text-lg font-merriweather text-white sm:pb-6 pb-3">
                     {posts[1]?.attributes?.Title}
                   </p>
-                  <Link href={`/news/pressrelease`}>
+                  <Link href='/'>
                     <a className="text-green-400 font-bold text-lg underline cursor-pointer">
                       read more
                     </a>
@@ -108,7 +108,7 @@ const index = ({ posts }) => {
                   <p className="sm:text-xl text-lg font-merriweather text-white sm:pb-6 pb-3">
                     {posts[2]?.attributes?.Title}
                   </p>
-                  <Link href={`/news/pressrelease`}>
+                  <Link href='/'>
                     <a className="text-green-400 font-bold text-lg underline cursor-pointer">
                       read more
                     </a>
@@ -129,7 +129,7 @@ const index = ({ posts }) => {
                   <p className="sm:text-xl text-lg font-merriweather text-white sm:pb-6 pb-3">
                     {posts[3]?.attributes?.Title}
                   </p>
-                  <Link href={`/news/pressrelease`}>
+                  <Link href='/'>
                     <a className="text-green-400 font-bold text-lg underline cursor-pointer">
                       read more
                     </a>
