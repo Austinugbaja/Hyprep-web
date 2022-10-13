@@ -102,7 +102,7 @@ const HeaderComp = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/news/pressrelease">
+                  <Link href="/">
                     <a>Press release</a>
                   </Link>
                 </li>
@@ -253,7 +253,7 @@ const HeaderComp = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/news/pressrelease">
+                    <Link href="/">
                       <a>Press release</a>
                     </Link>
                   </li>
