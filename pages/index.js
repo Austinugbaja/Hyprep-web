@@ -23,10 +23,11 @@ import br from "../public/images/bottomright.png";
 import es from "../public/images/es.png";
 import df from "../public/images/df.png";
 import bg from "../public/images/newsletter.png";
-import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { GET_ALL_NEWS } from "../graphql/queries";
+
+import { fetcher } from "../lib/api";
 
 const index = ({ posts }) => {
+  console.log(posts);
   return (
     <Fragment>
       <MainLayout>
@@ -52,7 +53,7 @@ const index = ({ posts }) => {
                 <div
                   className="bg-noContent sm:h-[340px] sm:w-[718px] flex flex-col items-start justify-center w-full h-[50vw] p-5 rounded-2xl"
                   style={{
-                    background: `url(${posts[0]?.attributes?.Image?.data[0]?.attributes?.url})`,
+                    background: `url(${tr.src})`,
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
@@ -64,7 +65,7 @@ const index = ({ posts }) => {
                   <p className="sm:text-xl text-lg font-merriweather text-white sm:pb-6 pb-3">
                     {posts[0]?.attributes?.Title}
                   </p>
-                  <Link href={`/news/${posts[0]?.attributes?.urlSlug}`}>
+                  <Link href="/news/pressrelease">
                     <a className="text-green-400 font-bold text-lg underline cursor-pointer">
                       read more
                     </a>
@@ -73,7 +74,7 @@ const index = ({ posts }) => {
                 <div
                   className="bg-noContent sm:h-[340px] sm:w-[415px] flex flex-col items-start justify-center w-full h-[50vw] p-5 rounded-2xl"
                   style={{
-                    background: `url(${posts[1]?.attributes?.Image?.data[1]?.attributes?.url})`,
+                    background: `url(${tl.src})`,
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
@@ -85,7 +86,7 @@ const index = ({ posts }) => {
                   <p className="sm:text-xl text-lg font-merriweather text-white sm:pb-6 pb-3">
                     {posts[1]?.attributes?.Title}
                   </p>
-                  <Link href={`/news/${posts[1]?.attributes?.urlSlug}`}>
+                  <Link href="/news/pressrelease">
                     <a className="text-green-400 font-bold text-lg underline cursor-pointer">
                       read more
                     </a>
@@ -96,7 +97,7 @@ const index = ({ posts }) => {
                 <div
                   className="border border-solid bg-noContent sm:h-[340px] sm:w-[415px] flex flex-col items-start justify-center w-full h-[50vw] p-5 rounded-2xl"
                   style={{
-                    background: `url(${posts[2]?.attributes?.Image?.data[2]?.attributes?.url})`,
+                    background: `url(${br.src})`,
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
@@ -108,7 +109,7 @@ const index = ({ posts }) => {
                   <p className="sm:text-xl text-lg font-merriweather text-white sm:pb-6 pb-3">
                     {posts[2]?.attributes?.Title}
                   </p>
-                  <Link href={`/news/${posts[2]?.attributes?.urlSlug}`}>
+                  <Link href="/news/pressrelease">
                     <a className="text-green-400 font-bold text-lg underline cursor-pointer">
                       read more
                     </a>
@@ -117,7 +118,7 @@ const index = ({ posts }) => {
                 <div
                   className="border border-solid bg-noContent sm:h-[340px] sm:w-[718px] flex flex-col items-start justify-center w-full h-[50vw] p-5 rounded-2xl"
                   style={{
-                    background: `url(${posts[3]?.attributes?.Image?.data[3]?.attributes?.url})`,
+                    background: `url(${bl.src})`,
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
@@ -129,7 +130,7 @@ const index = ({ posts }) => {
                   <p className="sm:text-xl text-lg font-merriweather text-white sm:pb-6 pb-3">
                     {posts[3]?.attributes?.Title}
                   </p>
-                  <Link href={`/news/${posts[3]?.attributes?.urlSlug}`}>
+                  <Link href="/news/pressrelease">
                     <a className="text-green-400 font-bold text-lg underline cursor-pointer">
                       read more
                     </a>
@@ -337,18 +338,11 @@ const index = ({ posts }) => {
 
 export default index;
 
-export async function getServerSideProps() {
-  const client = new ApolloClient({
-    uri: `${process.env.NEXT_STRAPI_URL}/graphql`,
-    cache: new InMemoryCache(),
-  });
-
-  const { data } = await client.query({
-    query: GET_ALL_NEWS,
-  });
+export async function getStaticProps() {
+  const { data } = await fetcher(`${process.env.NEXT_STRAPI_URL}/news-guides`);
   return {
     props: {
-      posts: data.newsGuides.data,
+      posts: data,
     },
   };
 }
