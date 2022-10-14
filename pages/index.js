@@ -42,7 +42,7 @@ const index = (props) => {
   // console.log(post_one);
   const newArray = Object.values(posts);
   const [post_one, post_two, post_three, post_four] = newArray;
-
+  console.log(post_one);
   return (
     <Fragment>
       <MainLayout>
