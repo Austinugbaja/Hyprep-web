@@ -26,13 +26,23 @@ import bg from "../public/images/newsletter.png";
 
 import { fetcher } from "../lib/api";
 
+export async function getStaticProps() {
+  const { data } = await fetcher(`${process.env.NEXT_STRAPI_URL}/news-guides`);
+  // console.log(data)
+  return {
+    props: {
+      posts: data,
+    },
+  };
+}
+
 const index = (props) => {
   let { posts } = props;
   // const [post_one, post_two, post_three, post_four] = posts;
   // console.log(post_one);
   const newArray = Object.values(posts);
   const [post_one, post_two, post_three, post_four] = newArray;
-  
+
   return (
     <Fragment>
       <MainLayout>
@@ -342,13 +352,3 @@ const index = (props) => {
 };
 
 export default index;
-
-export async function getStaticProps() {
-  const { data } = await fetcher(`${process.env.NEXT_STRAPI_URL}/news-guides`);
-  // console.log(data)
-  return {
-    props: {
-      posts: data,
-    },
-  };
-}
