@@ -27,7 +27,7 @@ import bg from "../public/images/newsletter.png";
 import { fetcher } from "../lib/api";
 
 const index = ({ posts }) => {
-  console.log(posts);
+  const [post_one, post_two, post_three, post_four] = posts;
   return (
     <Fragment>
       <MainLayout>
@@ -60,10 +60,10 @@ const index = ({ posts }) => {
                   }}
                 >
                   <h5 className="uppercase text-gray-300 font-light sm:mb-4 mb-2 sm:p-3 p-2 bg-backgroundDark rounded-[100px] opacity-70">
-                    {posts[0]?.attributes?.Status}
+                    {post_one?.attributes?.Status}
                   </h5>
                   <p className="sm:text-xl text-lg font-merriweather text-white sm:pb-6 pb-3">
-                    {posts[0]?.attributes?.Title}
+                    {post_one?.attributes?.Title}
                   </p>
                   <Link href="/news/pressrelease">
                     <a className="text-green-400 font-bold text-lg underline cursor-pointer">
@@ -81,10 +81,10 @@ const index = ({ posts }) => {
                   }}
                 >
                   <h5 className="uppercase text-gray-300 font-light sm:mb-4 mb-2 sm:p-3 p-2 bg-backgroundDark rounded-[100px] opacity-70">
-                    {posts[1]?.attributes?.Status}
+                    {post_two?.attributes?.Status}
                   </h5>
                   <p className="sm:text-xl text-lg font-merriweather text-white sm:pb-6 pb-3">
-                    {posts[1]?.attributes?.Title}
+                    {post_two?.attributes?.Title}
                   </p>
                   <Link href="/news/pressrelease">
                     <a className="text-green-400 font-bold text-lg underline cursor-pointer">
@@ -104,10 +104,10 @@ const index = ({ posts }) => {
                   }}
                 >
                   <h5 className="uppercase text-gray-300 font-light sm:mb-4 mb-2 sm:p-3 p-2 bg-backgroundDark rounded-[100px] opacity-70">
-                    {posts[2]?.attributes?.Status}
+                    {post_three?.attributes?.Status}
                   </h5>
                   <p className="sm:text-xl text-lg font-merriweather text-white sm:pb-6 pb-3">
-                    {posts[2]?.attributes?.Title}
+                    {post_three?.attributes?.Title}
                   </p>
                   <Link href="/news/pressrelease">
                     <a className="text-green-400 font-bold text-lg underline cursor-pointer">
@@ -125,10 +125,10 @@ const index = ({ posts }) => {
                   }}
                 >
                   <h5 className="uppercase text-gray-300 font-light sm:mb-4 mb-2 sm:p-3 p-2 bg-backgroundDark rounded-[100px] opacity-70">
-                    {posts[3]?.attributes?.Status}
+                    {post_four?.attributes?.Status}
                   </h5>
                   <p className="sm:text-xl text-lg font-merriweather text-white sm:pb-6 pb-3">
-                    {posts[3]?.attributes?.Title}
+                    {post_four?.attributes?.Title}
                   </p>
                   <Link href="/news/pressrelease">
                     <a className="text-green-400 font-bold text-lg underline cursor-pointer">
@@ -340,6 +340,7 @@ export default index;
 
 export async function getStaticProps() {
   const { data } = await fetcher(`${process.env.NEXT_STRAPI_URL}/news-guides`);
+  // console.log(data)
   return {
     props: {
       posts: data,
