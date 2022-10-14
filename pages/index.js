@@ -26,8 +26,10 @@ import bg from "../public/images/newsletter.png";
 
 import { fetcher } from "../lib/api";
 
-const index = ({ posts }) => {
+const index = (props) => {
+  let { posts } = props;
   const [post_one, post_two, post_three, post_four] = posts;
+  // console.log(post_one);
   return (
     <Fragment>
       <MainLayout>
