@@ -26,7 +26,7 @@ import bg from "../public/images/newsletter.png";
 
 import { fetcher } from "../lib/api";
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const { data } = await fetcher(`${process.env.NEXT_STRAPI_URL}/news-guides`);
   // console.log(data)
   return {
